@@ -1,0 +1,129 @@
+一、	总览
+1、	Windows + Python 3.6 + Selenium 3.4 + Chrome/Firefox + Pycharm
+2、	Web Developer、FireBug + FirePath
+二、	科学上网
+此处省略200字
+三、	安装Python
+1、	下载地址
+Windows：https://www.python.org/
+Mac：https://www.python.org/downloads/mac-osx/
+ 
+
+注意：
+（1）	需要下载自己操作系统匹配的包（32位 or 64位）
+（2）	Python有两个主流版本 Python 2.7，Python 3.6，语法差异较大，本系列课程以Python 3.6版本为例
+2、	安装
+（1）双击安装包，打开安装框，勾选“Add Python 3.6 to PATH”
+ （2）自定义安装
+Documentation：Python 文档文件
+Pip：Python 包管理工具
+Python test suite：标准测试库
+ 
+（3）修改安装目录
+ 
+（4）点击“install”，等待完成安装
+
+3、	测试
+在命令提示符下面，直接输入python，回车，如果输出python版本信息，证明安装成功。
+ 
+四、	安装Selenium
+1、	安装
+方法一：命令提示符，使用pip帮助安装：pip install selenium
+方法二：从官网下载安装
+官网地址：http://www.seleniumhq.org/   （需要科学上网）
+
+2、	测试
+（1）	打开命令提示符，输入Python，回车，进入Python环境
+（2）	输入“from selenium import webdriver”,无报错信息，证明安装成功
+五、	安装PyCharm
+1、下载
+官网地址：https://www.jetbrains.com/zh/pycharm/download/download-thanks.html
+
+2、安装
+下载后，“下一步”，“下一步”，安装即可
+
+3、配置
+（1）创建一个project。选择创建目录，选择Python；
+（2）修改编辑器配置项。
+ 
+
+4、测试
+（1）新建一个Python文件
+（2）编写代码
+from selenium import webdriver
+from time import sleep
+
+driver = webdriver.Chrome()
+driver.get("http://www.baidu.com/")
+sleep(2)
+driver.quit()
+
+（3）	运行
+右键，运行
+ 
+（4）	查看结果
+浏览器自动打开百度首页，3秒钟后，自动关闭。
+ 
+六、	安装浏览器
+1、	下载
+版本请选择Google Chrome 61.0
+
+2、	安装
+下一步，下一步
+
+3、	测试
+（1）	手动打开浏览器
+（2）	查看浏览器版本
+ 
+七、	安装浏览器插件
+1、	Chrome 浏览器插件Web Developer
+2、	安装
+方法一：
+（1）	打开扩展程序；
+（2）	点击“获取更多扩展程序”；
+（3）	搜索“Web Developer”；
+（4）	安装，重启浏览器
+ 
+方法二：百度Web Developer 插件，下载文件，安装
+
+3、	测试
+（1）	开启插件
+（2）	鼠标右键，检查
+ 
+
+八、	第一个自动化测试脚本
+1、	思想
+自动化测试的基本思路是：
+（1）	定位Web 页面元素；
+（2）	对元素进行操作；
+（3）	对比结果和预期结果是否一致；
+
+2、	示例
+下面脚本的意思是：打开百度，定位到搜索框，输入“Storm”，然后判断输入框中是否真的输入了文字“Storm”。
+#导入webdriver包
+from selenium import webdriver
+from time import sleep
+
+#实例化一个driver
+driver = webdriver.Chrome()
+#打开百度，注意前面的http://不能省略
+driver.get("http://www.baidu.com")
+#定位百度搜索框
+myinput = driver.find_element_by_id('kw')
+#对其进行操作，输入“storm啊”
+myinput.send_keys("storm啊")
+#
+sleep(2)
+#储存测试结果
+res = driver.find_element_by_id('kw').get_attribute("value")
+#将测试结果和预期结果对比，成功打印pass，否则打印fail
+if res == "storm啊":
+    print('pass')
+else:
+    print('fail')
+#释放浏览器，关闭浏览器
+driver.quit()
+
+九、作业
+1、安装Firefox 浏览器
+4、	安装Firebug & Firepath 插件
